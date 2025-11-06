@@ -22,6 +22,7 @@ go get github.com/ivanzzeth/polymarket-go-data-client
 package main
 
 import (
+    "context"
     "fmt"
     "net/http"
 
@@ -35,15 +36,17 @@ func main() {
         panic(err)
     }
 
+    ctx := context.Background()
+
     // Check API health
-    health, err := client.HealthCheck()
+    health, err := client.HealthCheck(ctx)
     if err != nil {
         panic(err)
     }
     fmt.Printf("API Status: %s\n", health.Data)
 
     // Get user positions
-    positions, err := client.GetPositions(&polymarketdata.GetPositionsParams{
+    positions, err := client.GetPositions(ctx, &polymarketdata.GetPositionsParams{
         User:  "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
         Limit: 10,
     })
@@ -84,21 +87,23 @@ func main() {
 ### Example Usage
 
 ```go
+ctx := context.Background()
+
 // Get recent trades for a market
-trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+trades, err := client.GetTrades(ctx, &polymarketdata.GetTradesParams{
     Market: []string{"0xdd22472e552920b8438158ea7238bfadfa4f736aa4cee91a6b86c39ead110917"},
     Limit:  50,
 })
 
 // Get top holders
-holders, err := client.GetHolders(&polymarketdata.GetHoldersParams{
+holders, err := client.GetHolders(ctx, &polymarketdata.GetHoldersParams{
     Market:     []string{marketId},
     Limit:      10,
     MinBalance: 1000,
 })
 
 // Get open interest
-oi, err := client.GetOpenInterest(&polymarketdata.GetOpenInterestParams{
+oi, err := client.GetOpenInterest(ctx, &polymarketdata.GetOpenInterestParams{
     Market: []string{marketId},
 })
 ```
@@ -260,8 +265,8 @@ type Position struct {
 Function parameters use pointers for mutability, while struct fields use values when zero is acceptable:
 
 ```go
-// Function parameter is pointer
-func (c *DataClient) GetPositions(params *GetPositionsParams) ([]Position, error)
+// Function parameter is pointer, context comes first
+func (c *DataClient) GetPositions(ctx context.Context, params *GetPositionsParams) ([]Position, error)
 
 // Field types - pointers only when needed
 type GetPositionsParams struct {

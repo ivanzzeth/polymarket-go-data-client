@@ -8,6 +8,18 @@
 *.so
 *.dylib
 
+# Example binaries
+examples/*/smart_money_tracker
+examples/*/whale_watcher
+examples/*/market_liquidity_analyzer
+examples/*/sentiment_reversal_detector
+examples/*/price_momentum_analyzer
+smart_money_tracker
+whale_watcher
+market_liquidity_analyzer
+sentiment_reversal_detector
+price_momentum_analyzer
+
 # Test binary, built with `go test -c`
 *.test
 
