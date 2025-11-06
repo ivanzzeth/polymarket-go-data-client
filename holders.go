@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,7 +12,7 @@ import (
 )
 
 // GetHolders retrieves top holders for markets
-func (c *DataClient) GetHolders(params *GetHoldersParams) ([]MarketHolders, error) {
+func (c *DataClient) GetHolders(ctx context.Context, params *GetHoldersParams) ([]MarketHolders, error) {
 	if len(params.Market) == 0 {
 		return nil, fmt.Errorf("market is required")
 	}
@@ -39,7 +40,7 @@ func (c *DataClient) GetHolders(params *GetHoldersParams) ([]MarketHolders, erro
 	reqURL := fmt.Sprintf("%s/holders?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make holders request: %w", err)
 	}

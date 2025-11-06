@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,7 +12,7 @@ import (
 )
 
 // GetPositions retrieves current positions for a user
-func (c *DataClient) GetPositions(params *GetPositionsParams) ([]Position, error) {
+func (c *DataClient) GetPositions(ctx context.Context, params *GetPositionsParams) ([]Position, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -78,7 +79,7 @@ func (c *DataClient) GetPositions(params *GetPositionsParams) ([]Position, error
 	reqURL := fmt.Sprintf("%s/positions?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make positions request: %w", err)
 	}
@@ -109,7 +110,7 @@ func (c *DataClient) GetPositions(params *GetPositionsParams) ([]Position, error
 }
 
 // GetClosedPositions fetches closed positions for a user
-func (c *DataClient) GetClosedPositions(params *GetClosedPositionsParams) ([]ClosedPosition, error) {
+func (c *DataClient) GetClosedPositions(ctx context.Context, params *GetClosedPositionsParams) ([]ClosedPosition, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -169,7 +170,7 @@ func (c *DataClient) GetClosedPositions(params *GetClosedPositionsParams) ([]Clo
 	reqURL := fmt.Sprintf("%s/closed-positions?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make closed-positions request: %w", err)
 	}
@@ -200,7 +201,7 @@ func (c *DataClient) GetClosedPositions(params *GetClosedPositionsParams) ([]Clo
 }
 
 // GetPositionsValue retrieves the total value of a user's positions
-func (c *DataClient) GetPositionsValue(params *GetValueParams) ([]UserValue, error) {
+func (c *DataClient) GetPositionsValue(ctx context.Context, params *GetValueParams) ([]UserValue, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -218,7 +219,7 @@ func (c *DataClient) GetPositionsValue(params *GetValueParams) ([]UserValue, err
 	reqURL := fmt.Sprintf("%s/value?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make value request: %w", err)
 	}

@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,7 +12,7 @@ import (
 )
 
 // GetTrades retrieves trades for a user or markets
-func (c *DataClient) GetTrades(params *GetTradesParams) ([]Trade, error) {
+func (c *DataClient) GetTrades(ctx context.Context, params *GetTradesParams) ([]Trade, error) {
 	// Validate mutually exclusive parameters
 	if len(params.Market) > 0 && len(params.EventId) > 0 {
 		return nil, fmt.Errorf("market and eventId are mutually exclusive")
@@ -73,7 +74,7 @@ func (c *DataClient) GetTrades(params *GetTradesParams) ([]Trade, error) {
 	reqURL := fmt.Sprintf("%s/trades?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make trades request: %w", err)
 	}
@@ -104,7 +105,7 @@ func (c *DataClient) GetTrades(params *GetTradesParams) ([]Trade, error) {
 }
 
 // GetTradedMarketsCount retrieves the total number of markets a user has traded
-func (c *DataClient) GetTradedMarketsCount(params *GetTradedMarketsCountParams) (*TradedMarketsCount, error) {
+func (c *DataClient) GetTradedMarketsCount(ctx context.Context, params *GetTradedMarketsCountParams) (*TradedMarketsCount, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -117,7 +118,7 @@ func (c *DataClient) GetTradedMarketsCount(params *GetTradedMarketsCountParams) 
 	reqURL := fmt.Sprintf("%s/traded?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make traded request: %w", err)
 	}

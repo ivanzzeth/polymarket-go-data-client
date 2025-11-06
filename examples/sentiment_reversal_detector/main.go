@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -94,7 +95,7 @@ func detectSentimentReversal(client *polymarketdata.DataClient, marketId string)
 	}
 
 	// Get recent trades to analyze sentiment
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  200, // Last 200 trades
 	})
@@ -132,7 +133,7 @@ func detectSentimentReversal(client *polymarketdata.DataClient, marketId string)
 	}
 
 	// Get holder concentration
-	holders, err := client.GetHolders(&polymarketdata.GetHoldersParams{
+	holders, err := client.GetHolders(context.Background(), &polymarketdata.GetHoldersParams{
 		Market: []string{marketId},
 		Limit:  20,
 	})
@@ -195,7 +196,7 @@ func detectSentimentReversal(client *polymarketdata.DataClient, marketId string)
 
 func showDetailedAnalysis(client *polymarketdata.DataClient, marketId string) {
 	// Get recent trading patterns
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  50,
 	})

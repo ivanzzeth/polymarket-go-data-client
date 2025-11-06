@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 )
@@ -17,7 +18,7 @@ func TestGetHolders(t *testing.T) {
 		Limit:  10,
 	}
 
-	holders, err := client.GetHolders(params)
+	holders, err := client.GetHolders(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetHolders failed: %v", err)
 	}
@@ -47,7 +48,7 @@ func TestGetHoldersWithMinBalance(t *testing.T) {
 		Limit:      5,
 	}
 
-	holders, err := client.GetHolders(params)
+	holders, err := client.GetHolders(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetHolders with min balance failed: %v", err)
 	}

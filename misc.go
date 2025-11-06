@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -10,7 +11,7 @@ import (
 )
 
 // GetOpenInterest retrieves the open interest for markets
-func (c *DataClient) GetOpenInterest(params *GetOpenInterestParams) ([]OpenInterest, error) {
+func (c *DataClient) GetOpenInterest(ctx context.Context, params *GetOpenInterestParams) ([]OpenInterest, error) {
 	// Build query parameters
 	queryParams := url.Values{}
 
@@ -23,7 +24,7 @@ func (c *DataClient) GetOpenInterest(params *GetOpenInterestParams) ([]OpenInter
 	reqURL := fmt.Sprintf("%s/oi?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make open interest request: %w", err)
 	}
@@ -54,7 +55,7 @@ func (c *DataClient) GetOpenInterest(params *GetOpenInterestParams) ([]OpenInter
 }
 
 // GetLiveVolume retrieves the live volume for an event
-func (c *DataClient) GetLiveVolume(params *GetLiveVolumeParams) ([]LiveVolume, error) {
+func (c *DataClient) GetLiveVolume(ctx context.Context, params *GetLiveVolumeParams) ([]LiveVolume, error) {
 	if params.Id < 1 {
 		return nil, fmt.Errorf("id must be >= 1")
 	}
@@ -67,7 +68,7 @@ func (c *DataClient) GetLiveVolume(params *GetLiveVolumeParams) ([]LiveVolume, e
 	reqURL := fmt.Sprintf("%s/live-volume?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make live-volume request: %w", err)
 	}

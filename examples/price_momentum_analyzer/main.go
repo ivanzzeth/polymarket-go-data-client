@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -115,7 +116,7 @@ func analyzeMomentum(client *polymarketdata.DataClient, marketId string) (Moment
 	}
 
 	// Get recent trades
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  500,
 	})
@@ -225,7 +226,7 @@ func analyzeMomentum(client *polymarketdata.DataClient, marketId string) (Moment
 
 func showMomentumDetails(client *polymarketdata.DataClient, marketId string) {
 	// Get activity data for more insights
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  100,
 	})

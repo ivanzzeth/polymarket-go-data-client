@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 )
@@ -16,7 +17,7 @@ func TestGetActivity(t *testing.T) {
 		Limit: 10,
 	}
 
-	activities, err := client.GetActivity(params)
+	activities, err := client.GetActivity(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetActivity failed: %v", err)
 	}
@@ -41,7 +42,7 @@ func TestGetActivityWithType(t *testing.T) {
 		Limit: 5,
 	}
 
-	activities, err := client.GetActivity(params)
+	activities, err := client.GetActivity(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetActivity with type failed: %v", err)
 	}
@@ -66,7 +67,7 @@ func TestGetActivityWithTimeRange(t *testing.T) {
 		Limit: 5,
 	}
 
-	activities, err := client.GetActivity(params)
+	activities, err := client.GetActivity(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetActivity with time range failed: %v", err)
 	}

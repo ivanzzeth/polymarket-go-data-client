@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 )
@@ -16,7 +17,7 @@ func TestGetTrades(t *testing.T) {
 		Limit: 10,
 	}
 
-	trades, err := client.GetTrades(params)
+	trades, err := client.GetTrades(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetTrades failed: %v", err)
 	}
@@ -41,7 +42,7 @@ func TestGetTradesWithSide(t *testing.T) {
 		Limit: 5,
 	}
 
-	trades, err := client.GetTrades(params)
+	trades, err := client.GetTrades(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetTrades with side failed: %v", err)
 	}
@@ -64,7 +65,7 @@ func TestGetTradedMarketsCount(t *testing.T) {
 		User: "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
 	}
 
-	count, err := client.GetTradedMarketsCount(params)
+	count, err := client.GetTradedMarketsCount(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetTradedMarketsCount failed: %v", err)
 	}

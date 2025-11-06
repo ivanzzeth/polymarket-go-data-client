@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 )
@@ -15,7 +16,7 @@ func TestGetOpenInterest(t *testing.T) {
 		Market: []string{"0xdd22472e552920b8438158ea7238bfadfa4f736aa4cee91a6b86c39ead110917"},
 	}
 
-	openInterest, err := client.GetOpenInterest(params)
+	openInterest, err := client.GetOpenInterest(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetOpenInterest failed: %v", err)
 	}
@@ -36,7 +37,7 @@ func TestGetOpenInterestAll(t *testing.T) {
 
 	params := &GetOpenInterestParams{}
 
-	openInterest, err := client.GetOpenInterest(params)
+	openInterest, err := client.GetOpenInterest(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetOpenInterest all failed: %v", err)
 	}
@@ -60,7 +61,7 @@ func TestGetLiveVolume(t *testing.T) {
 		Id: 1,
 	}
 
-	liveVolume, err := client.GetLiveVolume(params)
+	liveVolume, err := client.GetLiveVolume(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetLiveVolume failed: %v", err)
 	}
@@ -90,7 +91,7 @@ func TestGetLiveVolumeMultipleEvents(t *testing.T) {
 			Id: eventId,
 		}
 
-		liveVolume, err := client.GetLiveVolume(params)
+		liveVolume, err := client.GetLiveVolume(context.Background(), params)
 		if err != nil {
 			t.Logf("GetLiveVolume for event %d failed: %v", eventId, err)
 			continue

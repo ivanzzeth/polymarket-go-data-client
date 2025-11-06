@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -11,7 +12,7 @@ import (
 )
 
 // GetActivity retrieves on-chain activity for a user
-func (c *DataClient) GetActivity(params *GetActivityParams) ([]Activity, error) {
+func (c *DataClient) GetActivity(ctx context.Context, params *GetActivityParams) ([]Activity, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -84,7 +85,7 @@ func (c *DataClient) GetActivity(params *GetActivityParams) ([]Activity, error) 
 	reqURL := fmt.Sprintf("%s/activity?%s", Endpoint, queryParams.Encode())
 
 	// Make request
-	resp, err := c.httpClient.Get(reqURL)
+	resp, err := c.doRequest(ctx, reqURL)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make activity request: %w", err)
 	}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -81,7 +82,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 	}
 
 	// Get closed positions to calculate historical PnL
-	closedPositions, err := client.GetClosedPositions(&polymarketdata.GetClosedPositionsParams{
+	closedPositions, err := client.GetClosedPositions(context.Background(), &polymarketdata.GetClosedPositionsParams{
 		User:          address,
 		Limit:         500,
 		SortBy:        polymarketdata.ClosedPositionSortByRealizedPnl,
@@ -99,7 +100,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 	profile.TotalPnL = totalPnL
 
 	// Get markets traded count
-	tradedCount, err := client.GetTradedMarketsCount(&polymarketdata.GetTradedMarketsCountParams{
+	tradedCount, err := client.GetTradedMarketsCount(context.Background(), &polymarketdata.GetTradedMarketsCountParams{
 		User: address,
 	})
 	if err != nil {
@@ -108,7 +109,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 	profile.MarketsTraded = tradedCount.Traded
 
 	// Get current positions value
-	values, err := client.GetPositionsValue(&polymarketdata.GetValueParams{
+	values, err := client.GetPositionsValue(context.Background(), &polymarketdata.GetValueParams{
 		User: address,
 	})
 	if err != nil {
@@ -119,7 +120,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 	}
 
 	// Get active positions count
-	positions, err := client.GetPositions(&polymarketdata.GetPositionsParams{
+	positions, err := client.GetPositions(context.Background(), &polymarketdata.GetPositionsParams{
 		User:  address,
 		Limit: 500,
 	})
@@ -132,7 +133,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 }
 
 func showTopPositions(client *polymarketdata.DataClient, address string, limit int) {
-	positions, err := client.GetPositions(&polymarketdata.GetPositionsParams{
+	positions, err := client.GetPositions(context.Background(), &polymarketdata.GetPositionsParams{
 		User:          address,
 		Limit:         limit,
 		SortBy:        polymarketdata.SortByCurrent,
@@ -162,7 +163,7 @@ func showTopPositions(client *polymarketdata.DataClient, address string, limit i
 }
 
 func showRecentActivity(client *polymarketdata.DataClient, address string, limit int) {
-	activities, err := client.GetActivity(&polymarketdata.GetActivityParams{
+	activities, err := client.GetActivity(context.Background(), &polymarketdata.GetActivityParams{
 		User:          address,
 		Limit:         limit,
 		SortBy:        polymarketdata.ActivitySortByTimestamp,

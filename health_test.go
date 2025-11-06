@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 )
@@ -11,7 +12,7 @@ func TestHealthCheck(t *testing.T) {
 		t.Fatalf("Failed to create client: %v", err)
 	}
 
-	resp, err := client.HealthCheck()
+	resp, err := client.HealthCheck(context.Background(), )
 	if err != nil {
 		t.Fatalf("HealthCheck failed: %v", err)
 	}

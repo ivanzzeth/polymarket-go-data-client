@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"net/http"
 	"testing"
 
@@ -18,7 +19,7 @@ func TestGetPositions(t *testing.T) {
 		Limit: 10,
 	}
 
-	positions, err := client.GetPositions(params)
+	positions, err := client.GetPositions(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetPositions failed: %v", err)
 	}
@@ -42,7 +43,7 @@ func TestGetClosedPositions(t *testing.T) {
 		Limit: 10,
 	}
 
-	positions, err := client.GetClosedPositions(params)
+	positions, err := client.GetClosedPositions(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetClosedPositions failed: %v", err)
 	}
@@ -65,7 +66,7 @@ func TestGetPositionsValue(t *testing.T) {
 		User: "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
 	}
 
-	values, err := client.GetPositionsValue(params)
+	values, err := client.GetPositionsValue(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetPositionsValue failed: %v", err)
 	}
@@ -91,7 +92,7 @@ func TestGetPositionsWithThreshold(t *testing.T) {
 		Limit:         5,
 	}
 
-	positions, err := client.GetPositions(params)
+	positions, err := client.GetPositions(context.Background(), params)
 	if err != nil {
 		t.Fatalf("GetPositions with threshold failed: %v", err)
 	}

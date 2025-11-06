@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -39,7 +40,7 @@ func main() {
 	fmt.Printf("Analyzing market: %s\n\n", marketId)
 
 	// Get holders for the market
-	holders, err := client.GetHolders(&polymarketdata.GetHoldersParams{
+	holders, err := client.GetHolders(context.Background(), &polymarketdata.GetHoldersParams{
 		Market:     []string{marketId},
 		Limit:      20,
 		MinBalance: 1000, // Only show holders with at least 1000 tokens
@@ -151,7 +152,7 @@ func main() {
 }
 
 func showWhaleActivity(client *polymarketdata.DataClient, address string, marketId string, limit int) {
-	activities, err := client.GetActivity(&polymarketdata.GetActivityParams{
+	activities, err := client.GetActivity(context.Background(), &polymarketdata.GetActivityParams{
 		User:          address,
 		Market:        []string{marketId},
 		Limit:         limit,

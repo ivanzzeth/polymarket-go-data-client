@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -32,7 +33,7 @@ func main() {
 
 	// Get global open interest to see all active markets
 	fmt.Println("Fetching global open interest data...")
-	allOI, err := client.GetOpenInterest(&polymarketdata.GetOpenInterestParams{})
+	allOI, err := client.GetOpenInterest(context.Background(), &polymarketdata.GetOpenInterestParams{})
 	if err != nil {
 		log.Fatalf("Failed to get open interest: %v", err)
 	}
@@ -125,7 +126,7 @@ func analyzeMarketLiquidity(client *polymarketdata.DataClient, marketId string) 
 	}
 
 	// Get open interest
-	oiData, err := client.GetOpenInterest(&polymarketdata.GetOpenInterestParams{
+	oiData, err := client.GetOpenInterest(context.Background(), &polymarketdata.GetOpenInterestParams{
 		Market: []string{marketId},
 	})
 	if err != nil {
@@ -137,7 +138,7 @@ func analyzeMarketLiquidity(client *polymarketdata.DataClient, marketId string) 
 	}
 
 	// Get recent trades to estimate volume
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  1000, // Last 1000 trades as proxy for recent activity
 	})
@@ -180,7 +181,7 @@ func analyzeMarketLiquidity(client *polymarketdata.DataClient, marketId string) 
 }
 
 func analyzePriceAction(client *polymarketdata.DataClient, marketId string, limit int) {
-	trades, err := client.GetTrades(&polymarketdata.GetTradesParams{
+	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  limit,
 	})

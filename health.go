@@ -1,6 +1,7 @@
 package polymarketdata
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -9,10 +10,10 @@ import (
 
 // HealthCheck performs a health check on the Polymarket Data API
 // Returns "OK" if the API is healthy
-func (c *DataClient) HealthCheck() (*HealthResponse, error) {
+func (c *DataClient) HealthCheck(ctx context.Context) (*HealthResponse, error) {
 	url := Endpoint + "/"
 
-	resp, err := c.httpClient.Get(url)
+	resp, err := c.doRequest(ctx, url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make health check request: %w", err)
 	}
