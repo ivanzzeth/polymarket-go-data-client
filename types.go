@@ -37,31 +37,31 @@ const (
 
 // Position represents a user's position in a market
 type Position struct {
-	ProxyWallet         string          `json:"proxyWallet"`
-	Asset               string          `json:"asset"`
-	ConditionId         string          `json:"conditionId"`
-	Size                decimal.Decimal `json:"size"`
-	AvgPrice            decimal.Decimal `json:"avgPrice"`
-	InitialValue        decimal.Decimal `json:"initialValue"`
-	CurrentValue        decimal.Decimal `json:"currentValue"`
-	CashPnl             decimal.Decimal `json:"cashPnl"`
-	PercentPnl          decimal.Decimal `json:"percentPnl"`
-	TotalBought         decimal.Decimal `json:"totalBought"`
-	RealizedPnl         decimal.Decimal `json:"realizedPnl"`
-	PercentRealizedPnl  decimal.Decimal `json:"percentRealizedPnl"`
-	CurPrice            decimal.Decimal `json:"curPrice"`
-	Redeemable          bool            `json:"redeemable"`
-	Mergeable           bool            `json:"mergeable"`
-	Title               string          `json:"title"`
-	Slug                string          `json:"slug"`
-	Icon                string          `json:"icon"`
-	EventSlug           string          `json:"eventSlug"`
-	Outcome             string          `json:"outcome"`
-	OutcomeIndex        int             `json:"outcomeIndex"`
-	OppositeOutcome     string          `json:"oppositeOutcome"`
-	OppositeAsset       string          `json:"oppositeAsset"`
-	EndDate             string          `json:"endDate"`
-	NegativeRisk        bool            `json:"negativeRisk"`
+	ProxyWallet        string          `json:"proxyWallet"`
+	Asset              string          `json:"asset"`
+	ConditionId        string          `json:"conditionId"`
+	Size               decimal.Decimal `json:"size"`
+	AvgPrice           decimal.Decimal `json:"avgPrice"`
+	InitialValue       decimal.Decimal `json:"initialValue"`
+	CurrentValue       decimal.Decimal `json:"currentValue"`
+	CashPnl            decimal.Decimal `json:"cashPnl"`
+	PercentPnl         decimal.Decimal `json:"percentPnl"`
+	TotalBought        decimal.Decimal `json:"totalBought"`
+	RealizedPnl        decimal.Decimal `json:"realizedPnl"`
+	PercentRealizedPnl decimal.Decimal `json:"percentRealizedPnl"`
+	CurPrice           decimal.Decimal `json:"curPrice"`
+	Redeemable         bool            `json:"redeemable"`
+	Mergeable          bool            `json:"mergeable"`
+	Title              string          `json:"title"`
+	Slug               string          `json:"slug"`
+	Icon               string          `json:"icon"`
+	EventSlug          string          `json:"eventSlug"`
+	Outcome            string          `json:"outcome"`
+	OutcomeIndex       int             `json:"outcomeIndex"`
+	OppositeOutcome    string          `json:"oppositeOutcome"`
+	OppositeAsset      string          `json:"oppositeAsset"`
+	EndDate            string          `json:"endDate"`
+	NegativeRisk       bool            `json:"negativeRisk"`
 }
 
 // GetPositionsParams represents parameters for getting user positions
@@ -133,7 +133,7 @@ type GetTradesParams struct {
 
 // TradedMarketsCount represents the total number of markets a user has traded
 type TradedMarketsCount struct {
-	User   string `json:"user"`  // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
+	User   string `json:"user"`   // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
 	Traded int    `json:"traded"` // Total number of markets traded
 }
 
@@ -165,27 +165,27 @@ const (
 
 // Activity represents a user's on-chain activity
 type Activity struct {
-	ProxyWallet              string          `json:"proxyWallet"` // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
-	Timestamp                int64           `json:"timestamp"`
-	ConditionId              string          `json:"conditionId"` // 0x-prefixed 64-hex string. Example: "0xdd22472e552920b8438158ea7238bfadfa4f736aa4cee91a6b86c39ead110917"
-	Type                     ActivityType    `json:"type"`        // Available options: TRADE, SPLIT, MERGE, REDEEM, REWARD, CONVERSION
-	Size                     decimal.Decimal `json:"size"`
-	UsdcSize                 decimal.Decimal `json:"usdcSize"`
-	TransactionHash          string          `json:"transactionHash"`
-	Price                    decimal.Decimal `json:"price"`
-	Asset                    string          `json:"asset"`
-	Side                     TradeSide       `json:"side"` // Available options: BUY, SELL
-	OutcomeIndex             int             `json:"outcomeIndex"`
-	Title                    string          `json:"title"`
-	Slug                     string          `json:"slug"`
-	Icon                     string          `json:"icon"`
-	EventSlug                string          `json:"eventSlug"`
-	Outcome                  string          `json:"outcome"`
-	Name                     string          `json:"name"`
-	Pseudonym                string          `json:"pseudonym"`
-	Bio                      string          `json:"bio"`
-	ProfileImage             string          `json:"profileImage"`
-	ProfileImageOptimized    string          `json:"profileImageOptimized"`
+	ProxyWallet           string          `json:"proxyWallet"` // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
+	Timestamp             int64           `json:"timestamp"`
+	ConditionId           string          `json:"conditionId"` // 0x-prefixed 64-hex string. Example: "0xdd22472e552920b8438158ea7238bfadfa4f736aa4cee91a6b86c39ead110917"
+	Type                  ActivityType    `json:"type"`        // Available options: TRADE, SPLIT, MERGE, REDEEM, REWARD, CONVERSION
+	Size                  decimal.Decimal `json:"size"`
+	UsdcSize              decimal.Decimal `json:"usdcSize"`
+	TransactionHash       string          `json:"transactionHash"`
+	Price                 decimal.Decimal `json:"price"`
+	Asset                 string          `json:"asset"`
+	Side                  TradeSide       `json:"side"` // Available options: BUY, SELL
+	OutcomeIndex          int             `json:"outcomeIndex"`
+	Title                 string          `json:"title"`
+	Slug                  string          `json:"slug"`
+	Icon                  string          `json:"icon"`
+	EventSlug             string          `json:"eventSlug"`
+	Outcome               string          `json:"outcome"`
+	Name                  string          `json:"name"`
+	Pseudonym             string          `json:"pseudonym"`
+	Bio                   string          `json:"bio"`
+	ProfileImage          string          `json:"profileImage"`
+	ProfileImageOptimized string          `json:"profileImageOptimized"`
 }
 
 // GetActivityParams represents parameters for getting user activity
@@ -205,16 +205,16 @@ type GetActivityParams struct {
 
 // Holder represents a holder of a market token
 type Holder struct {
-	ProxyWallet             string          `json:"proxyWallet"`             // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
-	Bio                     string          `json:"bio"`                     // User bio
-	Asset                   string          `json:"asset"`                   // Asset address
-	Pseudonym               string          `json:"pseudonym"`               // User pseudonym
-	Amount                  decimal.Decimal `json:"amount"`                  // Amount held
-	DisplayUsernamePublic   bool            `json:"displayUsernamePublic"`   // Whether username is public
-	OutcomeIndex            int             `json:"outcomeIndex"`            // Outcome index
-	Name                    string          `json:"name"`                    // User name
-	ProfileImage            string          `json:"profileImage"`            // Profile image URL
-	ProfileImageOptimized   string          `json:"profileImageOptimized"`   // Optimized profile image URL
+	ProxyWallet           string          `json:"proxyWallet"`           // User Profile Address (0x-prefixed, 40 hex chars). Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
+	Bio                   string          `json:"bio"`                   // User bio
+	Asset                 string          `json:"asset"`                 // Asset address
+	Pseudonym             string          `json:"pseudonym"`             // User pseudonym
+	Amount                decimal.Decimal `json:"amount"`                // Amount held
+	DisplayUsernamePublic bool            `json:"displayUsernamePublic"` // Whether username is public
+	OutcomeIndex          int             `json:"outcomeIndex"`          // Outcome index
+	Name                  string          `json:"name"`                  // User name
+	ProfileImage          string          `json:"profileImage"`          // Profile image URL
+	ProfileImageOptimized string          `json:"profileImageOptimized"` // Optimized profile image URL
 }
 
 // MarketHolders represents holders for a specific market token
@@ -274,14 +274,14 @@ type ClosedPosition struct {
 
 // GetClosedPositionsParams represents parameters for getting closed positions
 type GetClosedPositionsParams struct {
-	User          string                   // Required: The address of the user. Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
-	Market        []string                 // Optional: The conditionId of the market (0x-prefixed 64-hex string). Cannot be used with EventId.
-	Title         string                   // Optional: Filter by market title. Maximum length: 100
-	EventId       []int                    // Optional: The event id. Returns positions for all markets for those event ids. Cannot be used with Market.
-	Limit         int                      // Optional: Default 50, required range: 0 <= x <= 500. 0 means not set.
-	Offset        int                      // Optional: Default 0, required range: 0 <= x <= 10000. 0 means not set.
-	SortBy        ClosedPositionSortBy     // Optional: Default REALIZEDPNL. Available options: REALIZEDPNL, TITLE, PRICE, AVGPRICE
-	SortDirection SortDirection            // Optional: Default DESC. Available options: ASC, DESC
+	User          string               // Required: The address of the user. Example: "0x56687bf447db6ffa42ffe2204a05edaa20f55839"
+	Market        []string             // Optional: The conditionId of the market (0x-prefixed 64-hex string). Cannot be used with EventId.
+	Title         string               // Optional: Filter by market title. Maximum length: 100
+	EventId       []int                // Optional: The event id. Returns positions for all markets for those event ids. Cannot be used with Market.
+	Limit         int                  // Optional: Default 50, required range: 0 <= x <= 500. 0 means not set.
+	Offset        int                  // Optional: Default 0, required range: 0 <= x <= 10000. 0 means not set.
+	SortBy        ClosedPositionSortBy // Optional: Default REALIZEDPNL. Available options: REALIZEDPNL, TITLE, PRICE, AVGPRICE
+	SortDirection SortDirection        // Optional: Default DESC. Available options: ASC, DESC
 }
 
 // OpenInterest represents the open interest for a market
