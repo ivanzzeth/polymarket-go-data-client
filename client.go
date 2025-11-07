@@ -7,18 +7,18 @@ import (
 
 const Endpoint = "https://data-api.polymarket.com"
 
-type DataClient struct {
+type Client struct {
 	httpClient *http.Client
 }
 
-func NewDataClient(httpClient *http.Client) (*DataClient, error) {
-	return &DataClient{
+func NewClient(httpClient *http.Client) (*Client, error) {
+	return &Client{
 		httpClient: httpClient,
 	}, nil
 }
 
 // doRequest is a helper method to make HTTP requests with context
-func (c *DataClient) doRequest(ctx context.Context, url string) (*http.Response, error) {
+func (c *Client) doRequest(ctx context.Context, url string) (*http.Response, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, err

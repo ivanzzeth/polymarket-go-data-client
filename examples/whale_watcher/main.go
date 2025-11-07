@@ -28,7 +28,7 @@ func main() {
 	fmt.Println()
 
 	// Create client
-	client, err := polymarketdata.NewDataClient(&http.Client{})
+	client, err := polymarketdata.NewClient(&http.Client{})
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -151,7 +151,7 @@ func main() {
 	}
 }
 
-func showWhaleActivity(client *polymarketdata.DataClient, address string, marketId string, limit int) {
+func showWhaleActivity(client *polymarketdata.Client, address string, marketId string, limit int) {
 	activities, err := client.GetActivity(context.Background(), &polymarketdata.GetActivityParams{
 		User:          address,
 		Market:        []string{marketId},

@@ -12,7 +12,7 @@ import (
 )
 
 // GetTrades retrieves trades for a user or markets
-func (c *DataClient) GetTrades(ctx context.Context, params *GetTradesParams) ([]Trade, error) {
+func (c *Client) GetTrades(ctx context.Context, params *GetTradesParams) ([]Trade, error) {
 	// Validate mutually exclusive parameters
 	if len(params.Market) > 0 && len(params.EventId) > 0 {
 		return nil, fmt.Errorf("market and eventId are mutually exclusive")
@@ -105,7 +105,7 @@ func (c *DataClient) GetTrades(ctx context.Context, params *GetTradesParams) ([]
 }
 
 // GetTradedMarketsCount retrieves the total number of markets a user has traded
-func (c *DataClient) GetTradedMarketsCount(ctx context.Context, params *GetTradedMarketsCountParams) (*TradedMarketsCount, error) {
+func (c *Client) GetTradedMarketsCount(ctx context.Context, params *GetTradedMarketsCountParams) (*TradedMarketsCount, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}

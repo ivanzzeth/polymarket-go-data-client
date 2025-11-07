@@ -9,7 +9,7 @@ import (
 )
 
 func TestGetPositions(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -33,7 +33,7 @@ func TestGetPositions(t *testing.T) {
 }
 
 func TestGetClosedPositions(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -57,7 +57,7 @@ func TestGetClosedPositions(t *testing.T) {
 }
 
 func TestGetPositionsValue(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -80,7 +80,7 @@ func TestGetPositionsValue(t *testing.T) {
 }
 
 func TestGetPositionsWithThreshold(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}

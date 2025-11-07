@@ -10,7 +10,7 @@ import (
 
 // HealthCheck performs a health check on the Polymarket Data API
 // Returns "OK" if the API is healthy
-func (c *DataClient) HealthCheck(ctx context.Context) (*HealthResponse, error) {
+func (c *Client) HealthCheck(ctx context.Context) (*HealthResponse, error) {
 	url := Endpoint + "/"
 
 	resp, err := c.doRequest(ctx, url)
