@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetActivity(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -31,7 +31,7 @@ func TestGetActivity(t *testing.T) {
 }
 
 func TestGetActivityWithType(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -56,7 +56,7 @@ func TestGetActivityWithType(t *testing.T) {
 }
 
 func TestGetActivityWithTimeRange(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}

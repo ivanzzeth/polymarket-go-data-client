@@ -27,7 +27,7 @@ func main() {
 	fmt.Println()
 
 	// Create client
-	client, err := polymarketdata.NewDataClient(&http.Client{})
+	client, err := polymarketdata.NewClient(&http.Client{})
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -89,7 +89,7 @@ func main() {
 	}
 }
 
-func detectSentimentReversal(client *polymarketdata.DataClient, marketId string) (SentimentSignal, error) {
+func detectSentimentReversal(client *polymarketdata.Client, marketId string) (SentimentSignal, error) {
 	signal := SentimentSignal{
 		MarketId: marketId,
 	}
@@ -194,7 +194,7 @@ func detectSentimentReversal(client *polymarketdata.DataClient, marketId string)
 	return signal, nil
 }
 
-func showDetailedAnalysis(client *polymarketdata.DataClient, marketId string) {
+func showDetailedAnalysis(client *polymarketdata.Client, marketId string) {
 	// Get recent trading patterns
 	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},

@@ -12,7 +12,7 @@ import (
 )
 
 // GetActivity retrieves on-chain activity for a user
-func (c *DataClient) GetActivity(ctx context.Context, params *GetActivityParams) ([]Activity, error) {
+func (c *Client) GetActivity(ctx context.Context, params *GetActivityParams) ([]Activity, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}

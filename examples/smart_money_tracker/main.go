@@ -27,7 +27,7 @@ func main() {
 	fmt.Println()
 
 	// Create client
-	client, err := polymarketdata.NewDataClient(&http.Client{})
+	client, err := polymarketdata.NewClient(&http.Client{})
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -76,7 +76,7 @@ func main() {
 	}
 }
 
-func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderProfile, error) {
+func analyzeTrader(client *polymarketdata.Client, address string) (TraderProfile, error) {
 	profile := TraderProfile{
 		Address: address,
 	}
@@ -132,7 +132,7 @@ func analyzeTrader(client *polymarketdata.DataClient, address string) (TraderPro
 	return profile, nil
 }
 
-func showTopPositions(client *polymarketdata.DataClient, address string, limit int) {
+func showTopPositions(client *polymarketdata.Client, address string, limit int) {
 	positions, err := client.GetPositions(context.Background(), &polymarketdata.GetPositionsParams{
 		User:          address,
 		Limit:         limit,
@@ -162,7 +162,7 @@ func showTopPositions(client *polymarketdata.DataClient, address string, limit i
 	}
 }
 
-func showRecentActivity(client *polymarketdata.DataClient, address string, limit int) {
+func showRecentActivity(client *polymarketdata.Client, address string, limit int) {
 	activities, err := client.GetActivity(context.Background(), &polymarketdata.GetActivityParams{
 		User:          address,
 		Limit:         limit,

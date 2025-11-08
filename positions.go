@@ -12,7 +12,7 @@ import (
 )
 
 // GetPositions retrieves current positions for a user
-func (c *DataClient) GetPositions(ctx context.Context, params *GetPositionsParams) ([]Position, error) {
+func (c *Client) GetPositions(ctx context.Context, params *GetPositionsParams) ([]Position, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -110,7 +110,7 @@ func (c *DataClient) GetPositions(ctx context.Context, params *GetPositionsParam
 }
 
 // GetClosedPositions fetches closed positions for a user
-func (c *DataClient) GetClosedPositions(ctx context.Context, params *GetClosedPositionsParams) ([]ClosedPosition, error) {
+func (c *Client) GetClosedPositions(ctx context.Context, params *GetClosedPositionsParams) ([]ClosedPosition, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}
@@ -201,7 +201,7 @@ func (c *DataClient) GetClosedPositions(ctx context.Context, params *GetClosedPo
 }
 
 // GetPositionsValue retrieves the total value of a user's positions
-func (c *DataClient) GetPositionsValue(ctx context.Context, params *GetValueParams) ([]UserValue, error) {
+func (c *Client) GetPositionsValue(ctx context.Context, params *GetValueParams) ([]UserValue, error) {
 	if params.User == "" {
 		return nil, fmt.Errorf("user address is required")
 	}

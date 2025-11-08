@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetOpenInterest(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -30,7 +30,7 @@ func TestGetOpenInterest(t *testing.T) {
 }
 
 func TestGetOpenInterestAll(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -51,7 +51,7 @@ func TestGetOpenInterestAll(t *testing.T) {
 }
 
 func TestGetLiveVolume(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -80,7 +80,7 @@ func TestGetLiveVolume(t *testing.T) {
 }
 
 func TestGetLiveVolumeMultipleEvents(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}

@@ -11,7 +11,7 @@ import (
 )
 
 // GetOpenInterest retrieves the open interest for markets
-func (c *DataClient) GetOpenInterest(ctx context.Context, params *GetOpenInterestParams) ([]OpenInterest, error) {
+func (c *Client) GetOpenInterest(ctx context.Context, params *GetOpenInterestParams) ([]OpenInterest, error) {
 	// Build query parameters
 	queryParams := url.Values{}
 
@@ -55,7 +55,7 @@ func (c *DataClient) GetOpenInterest(ctx context.Context, params *GetOpenInteres
 }
 
 // GetLiveVolume retrieves the live volume for an event
-func (c *DataClient) GetLiveVolume(ctx context.Context, params *GetLiveVolumeParams) ([]LiveVolume, error) {
+func (c *Client) GetLiveVolume(ctx context.Context, params *GetLiveVolumeParams) ([]LiveVolume, error) {
 	if params.Id < 1 {
 		return nil, fmt.Errorf("id must be >= 1")
 	}

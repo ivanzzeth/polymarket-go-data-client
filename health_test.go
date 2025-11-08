@@ -7,7 +7,7 @@ import (
 )
 
 func TestHealthCheck(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}

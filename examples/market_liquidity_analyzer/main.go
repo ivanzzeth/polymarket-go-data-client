@@ -26,7 +26,7 @@ func main() {
 	fmt.Println()
 
 	// Create client
-	client, err := polymarketdata.NewDataClient(&http.Client{})
+	client, err := polymarketdata.NewClient(&http.Client{})
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -120,7 +120,7 @@ func main() {
 	}
 }
 
-func analyzeMarketLiquidity(client *polymarketdata.DataClient, marketId string) (MarketMetrics, error) {
+func analyzeMarketLiquidity(client *polymarketdata.Client, marketId string) (MarketMetrics, error) {
 	metric := MarketMetrics{
 		MarketId: marketId,
 	}
@@ -180,7 +180,7 @@ func analyzeMarketLiquidity(client *polymarketdata.DataClient, marketId string) 
 	return metric, nil
 }
 
-func analyzePriceAction(client *polymarketdata.DataClient, marketId string, limit int) {
+func analyzePriceAction(client *polymarketdata.Client, marketId string, limit int) {
 	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
 		Limit:  limit,

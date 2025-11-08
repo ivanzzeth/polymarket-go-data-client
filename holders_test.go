@@ -7,7 +7,7 @@ import (
 )
 
 func TestGetHolders(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}
@@ -37,7 +37,7 @@ func TestGetHolders(t *testing.T) {
 }
 
 func TestGetHoldersWithMinBalance(t *testing.T) {
-	client, err := NewDataClient(&http.Client{})
+	client, err := NewClient(&http.Client{})
 	if err != nil {
 		t.Fatalf("Failed to create client: %v", err)
 	}

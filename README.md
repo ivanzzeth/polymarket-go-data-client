@@ -31,7 +31,7 @@ import (
 
 func main() {
     // Create client
-    client, err := polymarketdata.NewDataClient(&http.Client{})
+    client, err := polymarketdata.NewClient(&http.Client{})
     if err != nil {
         panic(err)
     }

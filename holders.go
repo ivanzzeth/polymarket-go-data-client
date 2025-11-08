@@ -12,7 +12,7 @@ import (
 )
 
 // GetHolders retrieves top holders for markets
-func (c *DataClient) GetHolders(ctx context.Context, params *GetHoldersParams) ([]MarketHolders, error) {
+func (c *Client) GetHolders(ctx context.Context, params *GetHoldersParams) ([]MarketHolders, error) {
 	if len(params.Market) == 0 {
 		return nil, fmt.Errorf("market is required")
 	}

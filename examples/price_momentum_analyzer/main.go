@@ -31,7 +31,7 @@ func main() {
 	fmt.Println()
 
 	// Create client
-	client, err := polymarketdata.NewDataClient(&http.Client{})
+	client, err := polymarketdata.NewClient(&http.Client{})
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
@@ -110,7 +110,7 @@ func main() {
 	}
 }
 
-func analyzeMomentum(client *polymarketdata.DataClient, marketId string) (MomentumSignal, error) {
+func analyzeMomentum(client *polymarketdata.Client, marketId string) (MomentumSignal, error) {
 	signal := MomentumSignal{
 		MarketId: marketId,
 	}
@@ -224,7 +224,7 @@ func analyzeMomentum(client *polymarketdata.DataClient, marketId string) (Moment
 	return signal, nil
 }
 
-func showMomentumDetails(client *polymarketdata.DataClient, marketId string) {
+func showMomentumDetails(client *polymarketdata.Client, marketId string) {
 	// Get activity data for more insights
 	trades, err := client.GetTrades(context.Background(), &polymarketdata.GetTradesParams{
 		Market: []string{marketId},
