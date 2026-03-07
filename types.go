@@ -151,7 +151,8 @@ const (
 	ActivityTypeMerge      ActivityType = "MERGE"
 	ActivityTypeRedeem     ActivityType = "REDEEM"
 	ActivityTypeReward     ActivityType = "REWARD"
-	ActivityTypeConversion ActivityType = "CONVERSION"
+	ActivityTypeConversion  ActivityType = "CONVERSION"
+	ActivityTypeMakerRebate ActivityType = "MAKER_REBATE"
 )
 
 // ActivitySortBy represents the sort field for activities
